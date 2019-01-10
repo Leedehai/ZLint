@@ -169,8 +169,7 @@ Syntax: cpplint.py [--verbose=#] [--output=vs7] [--filter=-x,+y,...]
     The above example disables build/include_order warning and enables
     build/include_alpha as well as excludes all .cc from being
     processed by linter, in the current directory (where the .cfg
-    file is located) and all sub-directories.
-"""
+    file is located) and all sub-directories."""
 
 # We categorize each error message we print.  Here are the categories.
 # We want an explicit list so we can list them all in cpplint --filter=.
@@ -5999,6 +5998,10 @@ def ParseArguments(args):
   Returns:
     The list of filenames to lint.
   """
+  if "-h" in args or "--help" in args:
+    print(_USAGE)
+    sys.exit(0)
+
   try:
     (opts, filenames) = getopt.getopt(args, '', ['help', 'output=', 'verbose=',
                                                  'counting=',
